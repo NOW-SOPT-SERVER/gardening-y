@@ -1,6 +1,5 @@
 package org.example.domain;
 
-import org.example.domain.common.AccountType;
 import org.example.domain.common.BaseTime;
 
 import java.time.Duration;
@@ -10,12 +9,12 @@ public class Account extends BaseTime {
 
     private final long accountId;
     private final Customer customer;
-    private final AccountType accountType;
+    private final Bank.AccountType accountType;
     private long password;
     private long balance;
     private float rate;
 
-    public Account(long accountId, Customer customer, long password, AccountType accountType) {
+    public Account(long accountId, Customer customer, long password, Bank.AccountType accountType) {
         super();
         this.accountId = accountId;
         this.customer = customer;
@@ -25,11 +24,11 @@ public class Account extends BaseTime {
         this.rate = calculateRate(accountType);
     }
 
-    public static Account createAccount(long accountId, Customer customer, long password, AccountType accountType) {
+    public static Account createAccount(long accountId, Customer customer, long password, Bank.AccountType accountType) {
         return new Account(accountId, customer, password, accountType);
     }
 
-    public AccountType getAccountType() {
+    public Bank.AccountType getAccountType() {
         return accountType;
     }
 
@@ -55,8 +54,8 @@ public class Account extends BaseTime {
         this.balance = balance;
     }
 
-    private float calculateRate(AccountType accountType) {
-        if (accountType == AccountType.SAVINGS) {
+    private float calculateRate(Bank.AccountType accountType) {
+        if (accountType == Bank.AccountType.SAVINGS) {
             return 2.1f;
         }
         else {

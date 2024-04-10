@@ -3,7 +3,6 @@ package org.example.menu;
 import org.example.common.CustomException;
 import org.example.common.ErrorMessage;
 import org.example.domain.*;
-import org.example.domain.common.AccountType;
 import org.example.dto.*;
 import org.example.service.AccountService;
 import org.example.service.CheckingAccountService;
@@ -188,7 +187,7 @@ public class Menu {
     }
 
     private void printAccount(Account account) {
-        if (account.getAccountType() == AccountType.CHECKING) {
+        if (account.getAccountType() == Bank.AccountType.CHECKING) {
             System.out.println("계좌 유형: 입출금 통장");
         }
         else {

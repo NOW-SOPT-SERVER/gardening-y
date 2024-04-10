@@ -3,8 +3,8 @@ package org.example.service;
 import org.example.common.CustomException;
 import org.example.common.ErrorMessage;
 import org.example.domain.Account;
+import org.example.domain.Bank;
 import org.example.domain.Customer;
-import org.example.domain.common.AccountType;
 import org.example.dto.*;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class CheckingAccountService implements AccountService {
         CreateCustomerDTO dto = CreateCustomerDTO.of(createAccountDTO.person(), createAccountDTO.bank());
         Customer customer = customerService.createCustomer(dto);
         long accountId = createAccountId();
-        Account account = Account.createAccount(accountId, customer, createAccountDTO.password(), AccountType.CHECKING);
+        Account account = Account.createAccount(accountId, customer, createAccountDTO.password(), Bank.AccountType.CHECKING);
         accounts.add(account);
         return account;
     }
