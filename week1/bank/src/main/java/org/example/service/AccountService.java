@@ -7,7 +7,7 @@ import org.example.dto.DepositDTO;
 
 public interface AccountService {
     Account createAccount(CreateAccountDTO createAccountDTO); // 계좌 개설
-    public long deposit(DepositDTO depositDTO); // 입금
+    long deposit(DepositDTO depositDTO); // 입금
     long getBalance(AccountSecurityDTO accountSecurityDTO); // 잔액 조회
     void deleteAccount(AccountSecurityDTO accountSecurityDTO); // 계좌 해지
 }

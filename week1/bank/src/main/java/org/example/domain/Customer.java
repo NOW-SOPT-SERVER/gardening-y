@@ -7,9 +7,9 @@ import java.util.List;
 public class Customer extends BaseTime {
     private  static long idCounter = 0L;
 
-    private long id;
-    private Person person;
-    private Bank bank;
+    private final long id;
+    private final Person person;
+    private final Bank bank;
     private List<Account> accounts;
 
     public Customer(Person person, Bank bank) {

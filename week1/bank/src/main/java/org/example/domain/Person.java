@@ -1,10 +1,10 @@
 package org.example.domain;
 
 public class Person {
-    private String firstName;
-    private String lastName;
-    private String birth;
-    private Gender gender;
+    private final String firstName;
+    private final String lastName;
+    private final String birth;
+    private final Gender gender;
     private String phoneNumber;
 
     public Person(String firstName, String lastName, String birth, Gender gender, String phoneNumber) {

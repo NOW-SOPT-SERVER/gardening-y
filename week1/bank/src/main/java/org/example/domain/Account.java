@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 
 public class Account extends BaseTime {
 
-    private long accountId;
-    private Customer customer;
+    private final long accountId;
+    private final Customer customer;
+    private final AccountType accountType;
     private long password;
     private long balance;
-    private AccountType accountType;
     private float rate;
 
     public Account(long accountId, Customer customer, long password, AccountType accountType) {
@@ -56,10 +56,12 @@ public class Account extends BaseTime {
     }
 
     private float calculateRate(AccountType accountType) {
-        return switch (accountType) {
-            case SAVINGS -> 2.1f;
-            default -> 0.00f;
-        };
+        if (accountType == AccountType.SAVINGS) {
+            return 2.1f;
+        }
+        else {
+            return 0.00f;
+        }
     }
 
     private long calculatePeriod() {

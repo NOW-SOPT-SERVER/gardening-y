@@ -24,7 +24,7 @@ public class CheckingAccountService implements AccountService {
     public Account createAccount(CreateAccountDTO createAccountDTO) {
         CreateCustomerDTO dto = CreateCustomerDTO.of(createAccountDTO.person(), createAccountDTO.bank());
         Customer customer = customerService.createCustomer(dto);
-        long accountId = createAccountId(ACCOUNT_NUMBER);
+        long accountId = createAccountId();
         Account account = Account.createAccount(accountId, customer, createAccountDTO.password(), AccountType.CHECKING);
         accounts.add(account);
         return account;
@@ -70,9 +70,9 @@ public class CheckingAccountService implements AccountService {
         return account.getBalance();
     }
 
-    private long createAccountId(int len) {
-        long min = (long) Math.pow(10, len - 1);
-        long max = (long) Math.pow(10, len) - 1;
+    private long createAccountId() {
+        long min = (long) Math.pow(10, ACCOUNT_NUMBER - 1);
+        long max = (long) Math.pow(10, ACCOUNT_NUMBER) - 1;
 
         long randomId = ThreadLocalRandom.current().nextLong(min, max+1);
 
