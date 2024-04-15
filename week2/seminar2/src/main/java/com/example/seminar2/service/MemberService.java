@@ -6,11 +6,14 @@ import com.example.seminar2.domain.Member;
 import com.example.seminar2.dto.request.MemberCreateRequest;
 import com.example.seminar2.dto.response.MemberCreateResponse;
 import com.example.seminar2.dto.response.MemberFindResponse;
+import com.example.seminar2.dto.response.MembersFindResponse;
 import com.example.seminar2.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,7 +28,7 @@ public class MemberService {
         return MemberCreateResponse.of(member);
     }
 
-    public MemberFindResponse findMemberById(final Long memberId) {
+    public MemberFindResponse getMemberById(final Long memberId) {
         Member member = findMember(memberId);
         return MemberFindResponse.of(member);
     }
@@ -35,9 +38,18 @@ public class MemberService {
         memberRepository.deleteById(memberId);
     }
 
+    public MembersFindResponse getMembers() {
+        List<Member> members = findMembers();
+        return MembersFindResponse.of(members);
+    }
+
     private Member findMember(final Long memberId) {
         return memberRepository.findById(memberId).orElseThrow(
                 () -> new BusinessException(ErrorStatus.MEMBER_NOT_FOUND)
         );
+    }
+
+    private List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 }
