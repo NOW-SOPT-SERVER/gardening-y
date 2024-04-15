@@ -1,14 +1,16 @@
 package com.example.seminar2.common;
 
-import com.example.seminar2.common.error.ErrorStatus;
+import com.example.seminar2.common.exception.ErrorStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 
 @Builder(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Getter
 public class ApiResponse<T> {
     private final int status;
     private final String message;
@@ -48,7 +50,7 @@ public class ApiResponse<T> {
                 .body(ApiResponse.of(successStatus, data));
     }
 
-    public static ResponseEntity<ApiResponse<?>> success(ErrorStatus errorStatus) {
+    public static ResponseEntity<ApiResponse<?>> error(ErrorStatus errorStatus) {
         return ResponseEntity.status(errorStatus.getHttpStatus())
                 .body(ApiResponse.of(errorStatus));
     }
