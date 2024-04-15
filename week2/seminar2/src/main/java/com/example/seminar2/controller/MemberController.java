@@ -5,12 +5,11 @@ import com.example.seminar2.common.SuccessStatus;
 import com.example.seminar2.dto.request.MemberCreateRequest;
 import com.example.seminar2.dto.response.MemberCreateResponse;
 import com.example.seminar2.dto.response.MemberFindResponse;
+import com.example.seminar2.dto.response.MembersFindResponse;
 import com.example.seminar2.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,15 +24,21 @@ public class MemberController {
     }
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<ApiResponse<?>> findMemberById(@PathVariable Long memberId) {
-        memberService.findMemberById(memberId);
-        return ApiResponse.success(SuccessStatus.OK);
+    public ResponseEntity<ApiResponse<?>> getMember(@PathVariable Long memberId) {
+        final MemberFindResponse response = memberService.getMemberById(memberId);
+        return ApiResponse.success(SuccessStatus.OK, response);
     }
 
     @DeleteMapping("/{memberId}")
     public ResponseEntity<ApiResponse<?>> deleteMember(@PathVariable Long memberId) {
         memberService.deleteMemberById(memberId);
         return ApiResponse.success(SuccessStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<ApiResponse<?>> getMembers() {
+        final MembersFindResponse response = memberService.getMembers();
+        return ApiResponse.success(SuccessStatus.OK, response);
     }
 }
 
