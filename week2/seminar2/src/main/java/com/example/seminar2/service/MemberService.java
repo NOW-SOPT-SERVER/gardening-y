@@ -1,14 +1,13 @@
 package com.example.seminar2.service;
 
-import com.example.seminar2.common.error.BusinessException;
-import com.example.seminar2.common.error.ErrorStatus;
+import com.example.seminar2.common.exception.BusinessException;
+import com.example.seminar2.common.exception.ErrorStatus;
 import com.example.seminar2.domain.Member;
 import com.example.seminar2.dto.request.MemberCreateRequest;
 import com.example.seminar2.dto.response.MemberCreateResponse;
 import com.example.seminar2.dto.response.MemberFindResponse;
 import com.example.seminar2.dto.response.MembersFindResponse;
 import com.example.seminar2.repository.MemberRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

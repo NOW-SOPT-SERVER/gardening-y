@@ -35,7 +35,7 @@ public class MemberController {
         return ApiResponse.success(SuccessStatus.OK);
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<ApiResponse<?>> getMembers() {
         final MembersFindResponse response = memberService.getMembers();
         return ApiResponse.success(SuccessStatus.OK, response);

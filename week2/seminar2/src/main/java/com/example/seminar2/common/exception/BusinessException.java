@@ -1,4 +1,4 @@
-package com.example.seminar2.common.error;
+package com.example.seminar2.common.exception;
 
 public class BusinessException extends RuntimeException{
     public final ErrorStatus errorStatus;
