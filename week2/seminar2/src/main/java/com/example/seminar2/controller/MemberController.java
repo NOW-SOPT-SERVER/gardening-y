@@ -1,6 +1,9 @@
 package com.example.seminar2.controller;
 
+import com.example.seminar2.common.ApiResponse;
+import com.example.seminar2.common.SuccessStatus;
 import com.example.seminar2.dto.request.MemberCreateRequest;
+import com.example.seminar2.dto.response.MemberCreateResponse;
 import com.example.seminar2.dto.response.MemberFindResponse;
 import com.example.seminar2.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -16,20 +19,21 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity postMember(@RequestBody MemberCreateRequest request) {
-        return ResponseEntity.created(URI.create(memberService.createMember(request)))
-                .build();
+    public ResponseEntity<ApiResponse<?>> postMember(@RequestBody MemberCreateRequest request) {
+        final MemberCreateResponse response = memberService.createMember(request);
+        return ApiResponse.success(SuccessStatus.CREATED, response);
     }
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<MemberFindResponse> findMemberById(@PathVariable Long memberId) {
-        return ResponseEntity.ok(memberService.findMemberById(memberId));
+    public ResponseEntity<ApiResponse<?>> findMemberById(@PathVariable Long memberId) {
+        memberService.findMemberById(memberId);
+        return ApiResponse.success(SuccessStatus.OK);
     }
 
     @DeleteMapping("/{memberId}")
-    public ResponseEntity deleteMember(@PathVariable Long memberId) {
+    public ResponseEntity<ApiResponse<?>> deleteMember(@PathVariable Long memberId) {
         memberService.deleteMemberById(memberId);
-        return ResponseEntity.noContent().build();
+        return ApiResponse.success(SuccessStatus.OK);
     }
 }
 
