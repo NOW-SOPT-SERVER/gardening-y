@@ -1,5 +1,6 @@
 package com.example.carrot.domain;
 
+import com.example.carrot.common.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @Getter
 @Table(name="users")
 @Entity
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
