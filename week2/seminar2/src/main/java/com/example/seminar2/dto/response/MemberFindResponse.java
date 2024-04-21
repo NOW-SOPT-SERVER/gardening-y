@@ -2,9 +2,10 @@ package com.example.seminar2.dto.response;
 
 import com.example.seminar2.domain.Member;
 import com.example.seminar2.domain.Part;
+import lombok.AccessLevel;
 import lombok.Builder;
 
-@Builder
+@Builder(access = AccessLevel.PRIVATE)
 public record MemberFindResponse(
         String name,
         Part part,
